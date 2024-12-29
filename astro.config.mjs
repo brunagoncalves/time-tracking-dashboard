@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  // base: "/time-tracking-dashboard",
+  base: "/time-tracking-dashboard",
   site: "https://brunagoncalves.github.io",
   integrations: [tailwind(), sitemap()],
 });
