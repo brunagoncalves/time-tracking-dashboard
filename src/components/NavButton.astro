@@ -1,0 +1,12 @@
+---
+import type { menuTypes } from "src/types/menuTypes";
+
+const { name } = Astro.props as menuTypes;
+const isDaily = name.toLocaleLowerCase() === "daily";
+---
+
+<button
+  class="text-indigo-400 text-lg hover:text-white transition-colors data-[active=true]:text-white"
+  data-timeframe={name.toLocaleLowerCase()}
+  data-active={isDaily}>{name}</button
+>

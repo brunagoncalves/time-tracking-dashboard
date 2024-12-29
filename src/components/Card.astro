@@ -1,0 +1,52 @@
+---
+import type { TimeframeTypes } from "src/types/timeframeTypes";
+
+import iconWork from "@images/icon-work.svg";
+import iconPlay from "@images/icon-play.svg";
+import iconStudy from "@images/icon-study.svg";
+import iconExercise from "@images/icon-exercise.svg";
+import iconSocial from "@images/icon-social.svg";
+import iconSelfCare from "@images/icon-self-care.svg";
+import iconEllipsis from "@images/icon-ellipsis.svg";
+
+const { title } = Astro.props as TimeframeTypes;
+
+const iconMap = {
+  Work: iconWork,
+  Play: iconPlay,
+  Study: iconStudy,
+  Exercise: iconExercise,
+  Social: iconSocial,
+  "Self Care": iconSelfCare,
+};
+
+const backgroundColorMap = {
+  Work: "bg-work",
+  Play: "bg-play",
+  Study: "bg-study",
+  Exercise: "bg-exercise",
+  Social: "bg-social",
+  "Self Care": "bg-selfcare",
+} as const;
+
+const icon = iconMap[title as keyof typeof iconMap] || iconWork;
+const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColorMap] || "bg-red-500";
+---
+
+<article data-title={title} class="relative overflow-hidden text-white shadow rounded-[.9375rem] w-full h-full max-w-[26.5625rem] mx-auto">
+  <div class="grid grid-rows-[2.8125rem_1fr] h-full">
+    <div class={`${backgroundColor} relative overflow-hidden flex justify-end -mb-3`}>
+      <img src={icon.src} alt="" class="absolute -top-2 right-4 h-[4.875rem] w-auto" />
+    </div>
+    <div class="bg-indigo-900 px-6 py-7 rounded-[.9375rem] z-10 hover:bg-indigo-800 transition-colors cursor-pointer">
+      <div class="flex items-center justify-between lg:mb-6">
+        <h3 class="text-lg font-medium">{title}</h3>
+        <a href="#"><img src={iconEllipsis.src} alt="" /></a>
+      </div>
+      <div class="flex lg:flex-col lg:items-baseline items-center justify-between mt-2 lg:gap-2">
+        <p class="text-[2rem] lg:text-[3.5rem] font-light" data-current></p>
+        <p class="text-[.9375rem] text-indigo-300" data-previous></p>
+      </div>
+    </div>
+  </div>
+</article>

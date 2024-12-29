@@ -1,11 +1,37 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "@layout/Layout.astro";
+import imgAvatar from "@images/image-jeremy.png";
+import NavButton from "@components/NavButton.astro";
+import Card from "@components/Card.astro";
+import { menuItems } from "@config/menu";
+import timeData from "@data/data.json";
 ---
 
 <Layout>
-	<Welcome />
+  <main class="w-full min-h-screen flex items-center justify-center px-6 my-20 lg:my-0">
+    <div class="w-full max-w-[69.375rem] grid gap-6 lg:grid-cols-4 lg:gap-[1.875rem]">  
+      <aside class="bg-indigo-900 rounded-[.9375rem] md:row-span-2 w-full max-w-[26.5625rem] mx-auto">
+        <header class="bg-indigo-700 flex items-center gap-5 lg:flex-col lg:items-baseline lg:gap-10 py-[2.125rem] px-8 lg:pb-20 rounded-[.9375rem]">
+          <img class="w-16 lg:w-[4.875rem] h-auto border-[.1875rem] border-white rounded-full" src={imgAvatar.src} alt="Jeremy Robson" />
+          <div>
+            <p class="text-indigo-300 text-[.9375rem] lg:mb-[.1875rem]">Report for</p>
+            <h1 class="text-white font-light text-2xl lg:text-[2.5rem] leading-[2.9375rem]">Jeremy Robson</h1>
+          </div>
+        </header>
+        <nav class="flex items-center justify-between lg:flex-col lg:items-baseline lg:gap-5 px-8 py-6 lg:p-8">          
+          {menuItems.map((item) => <NavButton name={item.name} />)}          
+        </nav>
+      </aside>
+
+      {
+        timeData.map((item) => (
+          <Card
+            title={item.title}
+            timeframes={item.timeframes}
+            activeTimeframe={"daily"}
+          />
+        ))
+      }
+    </div>
+  </main>
 </Layout>
