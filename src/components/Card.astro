@@ -50,3 +50,77 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
     </div>
   </div>
 </article>
+
+<script>
+  interface TimeframeData {
+    [key: string]: {
+      current: number;
+      previous: number;
+    };
+  }
+
+  interface TimeData {
+    title: string;
+    timeframes: TimeframeData;
+  }
+
+  const updateCards = (timeframe: string) => {
+    // Fetch the JSON data
+    fetch("/src/data/data.json")
+      .then((response) => response.json())
+      .then((data: TimeData[]) => {
+        const cards = document.querySelectorAll("article");
+
+        cards.forEach((card) => {
+          const title = card.getAttribute("data-title");
+          const timeData = data.find((item) => item.title === title);
+
+          if (timeData) {
+            const currentElement = card.querySelector("[data-current]");
+            const previousElement = card.querySelector("[data-previous]");
+
+            if (currentElement && previousElement) {
+              const current = timeData.timeframes[timeframe].current;
+              const previous = timeData.timeframes[timeframe].previous;
+
+              currentElement.textContent = `${current}hrs`;
+              previousElement.textContent = `Last Week - ${previous}hrs`;
+            }
+          }
+        });
+      });
+  };
+
+  // Initial load with 'daily' timeframe
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(
+      "button[data-timeframe]"
+    );
+    const dailyButton = document.querySelector<HTMLButtonElement>(
+      'button[data-timeframe="daily"]'
+    );
+
+    // Set initial active state for daily button
+    if (dailyButton) {
+      dailyButton.dataset.active = "true";
+    }
+
+    // Initial update of cards with daily data
+    updateCards("daily");
+
+    // Add click event listeners
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const timeframe = button.dataset.timeframe;
+        if (timeframe) {
+          // Update active state
+          buttons.forEach((b) => delete b.dataset.active);
+          button.dataset.active = "true";
+
+          // Update cards
+          updateCards(timeframe);
+        }
+      });
+    });
+  });
+</script>
