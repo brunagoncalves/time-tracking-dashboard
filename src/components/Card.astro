@@ -41,7 +41,7 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
     <div class="bg-indigo-900 px-6 py-7 rounded-[.9375rem] z-10 hover:bg-indigo-800 transition-colors cursor-pointer">
       <div class="flex items-center justify-between lg:mb-6">
         <h2 class="text-lg font-medium">{title}</h2>
-        <a href="#"><img src={iconEllipsis.src} aria-label="More Options" alt="" /></a>
+        <a href="#" aria-label="More Options"><img src={iconEllipsis.src} alt="" /></a>
       </div>
       <div class="flex md:flex-col md:items-baseline items-center justify-between mt-2 md:gap-2">
         <p class="text-[2rem] lg:text-[3.5rem] font-light" data-current></p>
