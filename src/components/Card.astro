@@ -40,8 +40,8 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
     </div>
     <div class="bg-indigo-900 px-6 py-7 rounded-[.9375rem] z-10 hover:bg-indigo-800 transition-colors cursor-pointer">
       <div class="flex items-center justify-between lg:mb-6">
-        <h3 class="text-lg font-medium">{title}</h3>
-        <a href="#"><img src={iconEllipsis.src} alt="" /></a>
+        <h2 class="text-lg font-medium">{title}</h2>
+        <a href="#"><img src={iconEllipsis.src} aria-label="More Options" alt="" /></a>
       </div>
       <div class="flex md:flex-col md:items-baseline items-center justify-between mt-2 md:gap-2">
         <p class="text-[2rem] lg:text-[3.5rem] font-light" data-current></p>
@@ -66,6 +66,7 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
 
   const updateCards = (timeframe: string) => {
     // Fetch the JSON data
+    // fetch("time-tracking-dashboard/data/data.json") localhost
     fetch("data/data.json")
       .then((response) => response.json())
       .then((data: TimeData[]) => {
