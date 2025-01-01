@@ -32,8 +32,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [GitHub](https://your-solution-url.com)
-- Live Site URL: [Live](https://your-live-site-url.com)
+- Solution URL: [GitHub](https://github.com/brunagoncalves/time-tracking-dashboard)
+- Live Site URL: [Live](https://brunagoncalves.github.io/time-tracking-dashboard/)
 
 ## My process
 
