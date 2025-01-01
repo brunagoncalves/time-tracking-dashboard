@@ -43,7 +43,7 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
         <h2 class="text-lg font-medium">{title}</h2>
         <a href="#" aria-label="More Options"><img src={iconEllipsis.src} alt="" /></a>
       </div>
-      <div class="flex md:flex-col md:items-baseline items-center justify-between mt-2 md:gap-2">
+      <div class="flex md:flex-col md:items-baseline items-center justify-between mt-2 md:mt-0 md:gap-2">
         <p class="text-[2rem] lg:text-[3.5rem] font-light" data-current></p>
         <p class="text-[.9375rem] text-indigo-300" data-previous></p>
       </div>
@@ -66,8 +66,8 @@ const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColor
 
   const updateCards = (timeframe: string) => {
     // Fetch the JSON data
-    // fetch("time-tracking-dashboard/data/data.json") localhost
-    fetch("data/data.json")
+    fetch("time-tracking-dashboard/data/data.json")
+    // fetch("data/data.json")
       .then((response) => response.json())
       .then((data: TimeData[]) => {
         const cards = document.querySelectorAll("article");
