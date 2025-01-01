@@ -33,13 +33,13 @@ const icon = iconMap[title as keyof typeof iconMap] || iconWork;
 const backgroundColor = backgroundColorMap[title as keyof typeof backgroundColorMap] || "bg-red-500";
 ---
 
-<article data-title={title} class="relative overflow-hidden text-white shadow rounded-[.9375rem] w-full h-full max-w-[26.5625rem] mx-auto">
+<article data-title={title} class="relative overflow-hidden text-white shadow rounded-[.9375rem] w-full max-w-[26.5625rem] mx-auto">
   <div class="grid grid-rows-[2.8125rem_1fr] h-full">
     <div class={`${backgroundColor} relative overflow-hidden flex justify-end -mb-3`}>
       <img src={icon.src} alt="" class="absolute -top-2 right-4 h-[4.875rem] w-auto" />
     </div>
     <div class="bg-indigo-900 px-6 py-7 rounded-[.9375rem] z-10 hover:bg-indigo-800 transition-colors cursor-pointer">
-      <div class="flex items-center justify-between lg:mb-6">
+      <div class="flex items-center justify-between md:mb-3">
         <h2 class="text-lg font-medium">{title}</h2>
         <a href="#" aria-label="More Options"><img src={iconEllipsis.src} alt="" /></a>
       </div>
